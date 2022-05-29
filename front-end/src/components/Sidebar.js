@@ -36,7 +36,7 @@ const Sidebar = ({user, closeToggle}) => {
                 <div className='flex flex-col gap-5'>
                     <NavLink
                     to="/"
-                    className={({ isActive }) => isActive ? isActive : isNotActiveStyle}
+                    className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}
                     onClick={handleCloseSidebar}
                     >
                     <RiHomeFill />
@@ -46,7 +46,7 @@ const Sidebar = ({user, closeToggle}) => {
                     {categories.slice(0, categories.length - 1).map((category) => (
                         <NavLink
                         to={`/category/${category.name}`}
-                        className={({ isActive }) => isActive ? isActive : isNotActiveStyle}
+                        className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}
                         onClick={handleCloseSidebar}
                         key={category.name}
                         >
@@ -58,9 +58,10 @@ const Sidebar = ({user, closeToggle}) => {
             {user && (
                 <Link
                 to={`user-profile/${user._id}`}
-                className="flex my-5 mb-3 gap-2"
+                className="flex my-5 mb-3 gap-3 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
+                onClick={handleCloseSidebar}
                 >
-                    <img src={user.image ? 'undefined' : 'https://i.imgur.com/QhQ0gCo.png'} className="w-10 h-10 rounded-full" alt="user-profile" />
+                    <img src={user?.image} className="w-10 h-10 rounded-full" alt="user-profile" />
                     <p>{user.userName}</p>
                 </Link>
             )}
