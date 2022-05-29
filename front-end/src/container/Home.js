@@ -42,7 +42,7 @@ const Home = () => {
               <img src={logo} alt="logo" className='w-28' />
             </Link>
             <Link to={`user-profile/${user?._id}`}>
-              <img src={user?.image ? 'undefined' : 'https://i.imgur.com/QhQ0gCo.png'} alt="logo" className='w-28' />
+              <img src={user?.image} alt="logo" className='w-28' />
             </Link>
           </div>
           {/* If this turned on in that case show something */}
