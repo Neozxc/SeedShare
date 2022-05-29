@@ -20,6 +20,7 @@ const Sidebar = ({user, closeToggle}) => {
         { name: 'Photography' },
         { name: 'Gaming' },
         { name: 'Coding' },
+        { name: 'Other' },
     ]
 
 
