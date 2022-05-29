@@ -1,16 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import GoogleLogin from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import seedshare_video from '../assets/seedshare_video.mp4';
 import seedshare_logo from '../assets/seedshare_logo.png';
+import { client } from '../client';
 
+// Fix => idpiframe_initialization_failed
+import { gapi } from 'gapi-script';
 
 const Login = () => {
-
+    const navigate = useNavigate();
     const responseGoogle = (response) => {
-        console.log(response)
+        localStorage.setItem('user', JSON.stringify(response.profileObj));
+
+        const { name, googleId, imageUrl } = response.profileObj;
+
+        // Pass from through sanity
+        const doc = {
+            _id: googleId,
+            _type: 'user',
+            userName: name,
+            image: imageUrl
+        }
+
+        client.createIfNotExists(doc).then(() => {
+            navigate('/', { replace: true });
+        });
     }
+
+    // Fix => idpiframe_initialization_failed
+    useEffect(() => {
+        const start = () => {
+            gapi.client.init({
+                clientId: process.env.REACT_APP_GOOGLE_API_TOKEN,
+                scope: 'email'
+            })
+        }
+
+        gapi.load('client:auth2', start)
+    }, []);
 
   return (
     <div className='flex justify-start items-center flex-col h-screen'>
@@ -31,7 +60,7 @@ const Login = () => {
                 </div>
 
                 <div className='shadow-2xl'>
-                    <GoogleLogin 
+                    <GoogleLogin
                     clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
                     render={(renderProps) => (
                         <button
