@@ -44,17 +44,17 @@ const Login = () => {
     //     });
     // }
 
-    // Fix => idpiframe_initialization_failed
-    useEffect(() => {
-        const start = () => {
-            gapi.client.init({
-                clientId: `${process.env.REACT_APP_GOOGLE_API_TOKEN}`,
-                scope: 'user-login'
-            })
-        }
+    // // Fix => idpiframe_initialization_failed
+    // useEffect(() => {
+    //     const start = () => {
+    //         gapi.client.init({
+    //             clientId: process.env.REACT_APP_GOOGLE_API_TOKEN,
+    //             scope: 'user-login'
+    //         })
+    //     }
 
-        gapi.load('client:auth2', start)
-    }, []);
+    //     gapi.load('client:auth2', start)
+    // }, []);
 
   return (
     <div className='flex justify-start items-center flex-col h-screen'>
