@@ -33,7 +33,8 @@ const Login = () => {
     useEffect(() => {
         const start = () => {
             gapi.client.init({
-                clientId: "910163680368-p6qo2brttqcq0bv7lan2e9rrvfv5qk67.apps.googleusercontent.com",
+                clientId: process.env.REACT_APP_GOOGLE_API_TOKEN,
+                scope: 'email'
             })
         }
 
@@ -60,7 +61,7 @@ const Login = () => {
 
                 <div className='shadow-2xl'>
                     <GoogleLogin
-                    clientId="910163680368-p6qo2brttqcq0bv7lan2e9rrvfv5qk67.apps.googleusercontent.com"
+                    clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
                     render={(renderProps) => (
                         <button
                         type='button'
