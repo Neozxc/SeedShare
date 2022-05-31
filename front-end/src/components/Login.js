@@ -11,35 +11,50 @@ import { gapi } from 'gapi-script';
 
 const Login = () => {
     const navigate = useNavigate();
+
     const responseGoogle = (response) => {
         localStorage.setItem('user', JSON.stringify(response.profileObj));
-
         const { name, googleId, imageUrl } = response.profileObj;
-
-        // Pass from through sanity
         const doc = {
-            _id: googleId,
-            _type: 'user',
-            userName: name,
-            image: imageUrl
-        }
-
+          _id: googleId,
+          _type: 'user',
+          userName: name,
+          image: imageUrl,
+        };
         client.createIfNotExists(doc).then(() => {
-            navigate('/', { replace: true });
+          navigate('/', { replace: true });
         });
-    }
+      };
 
-    // Fix => idpiframe_initialization_failed
-    useEffect(() => {
-        const start = () => {
-            gapi.client.init({
-                clientId: process.env.REACT_APP_GOOGLE_API_TOKEN,
-                scopes: 'email'
-            })
-        }
+    // const responseGoogle = (response) => {
+    //     localStorage.setItem('user', JSON.stringify(response.profileObj));
 
-        gapi.load('clientId:auth2', start);
-    }, []);
+    //     const { name, googleId, imageUrl } = response.profileObj;
+
+    //     // Pass from through sanity
+    //     const doc = {
+    //         _id: googleId,
+    //         _type: 'user',
+    //         userName: name,
+    //         image: imageUrl
+    //     }
+
+    //     client.createIfNotExists(doc).then(() => {
+    //         navigate('/', { replace: true });
+    //     });
+    // }
+
+    // // Fix => idpiframe_initialization_failed
+    // useEffect(() => {
+    //     const start = () => {
+    //         gapi.client.init({
+    //             clientId: process.env.REACT_APP_GOOGLE_API_TOKEN,
+    //             scope: 'user-login'
+    //         })
+    //     }
+
+    //     gapi.load('client:auth2', start)
+    // }, []);
 
   return (
     <div className='flex justify-start items-center flex-col h-screen'>
@@ -61,7 +76,7 @@ const Login = () => {
 
                 <div className='shadow-2xl'>
                     <GoogleLogin
-                    clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
+                    clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
                     render={(renderProps) => (
                         <button
                         type='button'
