@@ -34,11 +34,11 @@ const Login = () => {
         const start = () => {
             gapi.client.init({
                 clientId: process.env.REACT_APP_GOOGLE_API_TOKEN,
-                scope: 'email'
+                scopes: 'email'
             })
         }
 
-        gapi.load('client:auth2', start)
+        gapi.load('clientId:auth2', start);
     }, []);
 
   return (
