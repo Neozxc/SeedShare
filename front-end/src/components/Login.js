@@ -7,7 +7,7 @@ import seedshare_logo from '../assets/seedshare_logo.png';
 import { client } from '../client';
 
 // Fix => idpiframe_initialization_failed
-import { gapi } from 'gapi-script';
+// import { gapi } from 'gapi-script';
 
 const Login = () => {
     const navigate = useNavigate();
