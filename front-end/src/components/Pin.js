@@ -17,7 +17,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
   const user = fetchUser();
 
   // Boolean value
-  // console.log(save);
+  // console.log(save)
   const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user?.googleId))?.length;
   const savePin = (id) => {
     if (!alreadySaved) {
