@@ -16,6 +16,7 @@ This was built using React as a front-end and Sanity as a back-end. It uses Goog
 
 ## Getting Started
 
+* Change your website cookies from Block third-party cookies to Allow all cookies. This is due to login with google.
 * Go to front-end
 * Change `client.js` Line 6 and line 11 to your token and projectId from sanity
 * Go to `front-end/src/components/Login.js` and change line 49 token with your google token
